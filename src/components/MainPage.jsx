@@ -2,8 +2,7 @@ import React from "react";
 import MoviePreview from './MoviePreview';
 import PropTypes from 'prop-types';
 
-const MainPage = (props) => {
-  const {preview} = props;
+const MainPage = ({preview}) => {
 
   return (
     <React.Fragment>

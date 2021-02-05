@@ -2,8 +2,7 @@ import React from "react";
 import MainPage from './MainPage';
 import PropTypes from 'prop-types';
 
-const App = (props) => {
-  const {preview} = props;
+const App = ({preview}) => {
 
   return <MainPage preview={preview} />;
 };
