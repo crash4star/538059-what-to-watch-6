@@ -7,9 +7,9 @@ import AddReview from './AddReview';
 import Player from './Player';
 import NotFound from './NotFound';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-const App = ({ preview }) => {
+const App = ({preview}) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -28,7 +28,7 @@ const App = ({ preview }) => {
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
-  )
+  );
 };
 
 App.propTypes = {

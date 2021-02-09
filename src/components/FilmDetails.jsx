@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 
 const FilmDetails = () => {
   return (
@@ -97,7 +96,7 @@ const FilmDetails = () => {
                     Adrien Brody, <br />
                     Ralph Fiennes, <br />
                     Jeff Goldblum
-                  </span>
+                    </span>
                   </p>
                 </div>
 
