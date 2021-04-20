@@ -1,6 +1,6 @@
 import React from "react";
 
-const MyListPage = (props) => {
+const MyListPage = () => {
   return (
     <>
       <div className="user-page">

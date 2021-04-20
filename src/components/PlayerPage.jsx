@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const PlayerPage = (props) => {
+const PlayerPage = () => {
   return (
     <>
       <div className="player">

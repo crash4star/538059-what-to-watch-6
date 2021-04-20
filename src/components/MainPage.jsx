@@ -5,11 +5,11 @@ import MovieCard from "./MovieCard";
 import MoviesData from "../MoivesData";
 
 const MainPage = (props) => {
-  const { title = `Movie no found` } = props;
-  const { src = `https://baclocal8se.org/sites/default/files/page/featured/650-413.png` } = props;
-  const { alt = `Movie no found` } = props;
-  const { genre = `Movie no found` } = props;
-  const { year = 1234 } = props;
+  const {title = `Movie no found`} = props;
+  const {src = `https://baclocal8se.org/sites/default/files/page/featured/650-413.png`} = props;
+  const {alt = `Movie no found`} = props;
+  const {genre = `Movie no found`} = props;
+  const {year = 1234} = props;
 
   return (
     <>

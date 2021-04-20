@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignInPage = (props) => {
+const SignInPage = () => {
   return (
     <>
       <div className="user-page">
