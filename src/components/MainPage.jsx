@@ -141,7 +141,7 @@ const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             {MoviesData.map((item, i) => (
-              <MovieCard data={item} key={item + i} />
+              <MovieCard data={item} key={item.width + i} />
             ))}
           </div>
 
