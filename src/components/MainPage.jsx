@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import MovieCard from "./MovieCard";
-import MoviesData from "../MoivesData";
+import MoviesList from './MoviesList';
 
 const MainPage = (props) => {
-  const {title = `Movie no found`} = props;
-  const {src = `https://baclocal8se.org/sites/default/files/page/featured/650-413.png`} = props;
+  const {name = `Movie no found`} = props;
+  const {poster_image = `https://baclocal8se.org/sites/default/files/page/featured/650-413.png`} = props;
   const {alt = `Movie no found`} = props;
   const {genre = `Movie no found`} = props;
   const {year = 1234} = props;
+  const films = props.films;
 
   return (
     <>
@@ -47,11 +47,11 @@ const MainPage = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={src} alt={alt} width="218" height="327" />
+              <img src={poster_image} alt={alt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{year}</span>
@@ -139,11 +139,7 @@ const MainPage = (props) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {MoviesData.map((item, i) => (
-              <MovieCard data={item} key={item.width + i} />
-            ))}
-          </div>
+          <MoviesList films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">
@@ -171,11 +167,12 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  poster_image: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired
+  year: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired
 };
 
 export default MainPage;

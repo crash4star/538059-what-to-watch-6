@@ -1,22 +1,32 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
+import {useHistory} from 'react-router-dom';
 
 const MovieCard = (props) => {
-  const {src = `none`} = props.data;
+  const {preview_image = `none`} = props.data;
   const {alt = `none`} = props.data;
-  const {width = `none`} = props.data;
-  const {height = `none`} = props.data;
-  const {title = `none`} = props.data;
+  const {name = `none`} = props.data;
+  const {id = ``} = props.data;
+
+  const [, setActiveCard] = useState(id);
+  const history = useHistory();
+
+  const handleGoToFilmPage = (e) => {
+    e.preventDefault();
+    history.push(`/films/${name}`);
+  };
 
   return (
     <>
-      <article className="small-movie-card catalog__movies-card">
+      <article className="small-movie-card catalog__movies-card" onMouseEnter={() => {
+        setActiveCard(id);
+      }}>
         <div className="small-movie-card__image">
-          <img src={src} alt={alt} width={width} height={height} />
+          <img src={preview_image} alt={alt} width={280} height={175} />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">
-            {title}
+          <a className="small-movie-card__link" href="movie-page.html" onClick={handleGoToFilmPage}>
+            {name}
           </a>
         </h3>
       </article>
@@ -26,11 +36,10 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   data: PropTypes.shape({
-    src: PropTypes.string.isRequired,
+    preview_image: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
   }),
 };
 

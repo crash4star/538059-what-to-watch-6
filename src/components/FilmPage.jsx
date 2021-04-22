@@ -1,14 +1,24 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import {useHistory} from 'react-router-dom';
 
-const FilmPage = () => {
+const FilmPage = (props) => {
+  const {film} = props;
+  const history = useHistory();
+
+  const handleAddReview = (e) => {
+    e.preventDefault();
+    history.push(`/films/${film.name}/review`);
+  };
+
   return (
     <>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
-              src="img/bg-the-grand-budapest-hotel.jpg"
-              alt="The Grand Budapest Hotel"
+              src={film.background_image}
+              alt={film.alt}
             />
           </div>
 
@@ -37,10 +47,10 @@ const FilmPage = () => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{film.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{film.genre}</span>
+                <span className="movie-card__year">{film.year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -62,7 +72,7 @@ const FilmPage = () => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">
+                <a href="add-review.html" className="btn movie-card__button" onClick={handleAddReview}>
                   Add review
                 </a>
               </div>
@@ -74,8 +84,8 @@ const FilmPage = () => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={film.poster_image}
+                alt={film.name}
                 width="218"
                 height="327"
               />
@@ -103,7 +113,7 @@ const FilmPage = () => {
               </nav>
 
               <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
+                <div className="movie-rating__score">{film.rating}</div>
                 <p className="movie-rating__meta">
                   <span className="movie-rating__level">Very good</span>
                   <span className="movie-rating__count">240 ratings</span>
@@ -112,27 +122,16 @@ const FilmPage = () => {
 
               <div className="movie-card__text">
                 <p>
-                  In the 1930s, the Grand Budapest Hotel is a popular European
-                  ski resort, presided over by concierge Gustave H. (Ralph
-                  Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend
-                  and protege.
-                </p>
-
-                <p>
-                  Gustave prides himself on providing first-className service to
-                  the hotel&apos;s guests, including satisfying the sexual needs of
-                  the many elderly women who stay there. When one of Gustave&apos;s
-                  lovers dies mysteriously, Gustave finds himself the recipient
-                  of a priceless painting and the chief suspect in her murder.
+                  {film.description}
                 </p>
 
                 <p className="movie-card__director">
-                  <strong>Director: Wes Andreson</strong>
+                  <strong>Director: {film.director}</strong>
                 </p>
 
                 <p className="movie-card__starring">
                   <strong>
-                    Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
+                    Starring: {film.starring.map((item, i, arr) => i < arr.length ? `${item}, ` : `${item}`)}
                     and other
                   </strong>
                 </p>
@@ -229,6 +228,21 @@ const FilmPage = () => {
       </div>
     </>
   );
+};
+
+FilmPage.propTypes = {
+  film: PropTypes.shape({
+    background_image: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+    poster_image: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired
+  })
 };
 
 export default FilmPage;

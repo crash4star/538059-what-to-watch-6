@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 
 import App from './components/App';
 
+import films from "./mocks/films";
 
 ReactDOM.render(
-    <App />,
+    <App
+      films={films} />,
     document.querySelector(`#root`)
 );

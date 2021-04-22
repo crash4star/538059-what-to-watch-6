@@ -1,13 +1,16 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
-const PlayerPage = () => {
+const PlayerPage = (props) => {
+  const film = props.film;
+
   return (
     <>
       <div className="player">
         <video
-          src="#"
+          src={film.video_link}
           className="player__video"
-          poster="img/player-poster.jpg"
+          poster={film.poster_image}
         ></video>
 
         <button type="button" className="player__exit">
@@ -41,7 +44,7 @@ const PlayerPage = () => {
               </svg>
               <span>Play</span>
             </button>
-            <div className="player__name">Transpotting</div>
+            <div className="player__name">{film.name}</div>
 
             <button type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
@@ -54,6 +57,14 @@ const PlayerPage = () => {
       </div>
     </>
   );
+};
+
+PlayerPage.propTypes = {
+  film: PropTypes.shape({
+    video_link: PropTypes.string.isRequired,
+    poster_image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  })
 };
 
 export default PlayerPage;

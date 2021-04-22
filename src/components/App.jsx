@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import MainPage from "./MainPage";
 import SignInPage from "./SignInPage";
@@ -9,52 +10,45 @@ import AddReviewPage from "./AddReviewPage";
 import PlayerPage from "./PlayerPage";
 import NotFoundPage from "./NotFoundPage";
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
           <MainPage
-            title={`The Grand Budapest Hotel`}
-            src={`img/the-grand-budapest-hotel-poster.jpg`}
+            name={`The Grand Budapest Hotel`}
+            poster_image={`img/the-grand-budapest-hotel-poster.jpg`}
             alt={`The Grand Budapest Hotel`}
             genre={`Drama`}
             year={2014}
+            films={props.films}
           />
         </Route>
-      </Switch>
-      <Switch>
         <Route path="/login" exact>
-          <SignInPage/>
+          <SignInPage />
         </Route>
-      </Switch>
-      <Switch>
         <Route path="/mylist" exact>
-          <MyListPage/>
+          <MyListPage films={props.films} />
         </Route>
-      </Switch>
-      <Switch>
         <Route path="/films/:id" exact>
-          <FilmPage/>
+          <FilmPage film={props.films[4]}/>
         </Route>
-      </Switch>
-      <Switch>
         <Route path="/films/:id/review" exact>
-          <AddReviewPage/>
+          <AddReviewPage film={props.films[4]}/>
         </Route>
-      </Switch>
-      <Switch>
         <Route path="/player/:id" exact>
-          <PlayerPage/>
+          <PlayerPage film={props.films[4]}/>
         </Route>
-      </Switch>
-      <Switch>
         <Route>
-          <NotFoundPage/>
+          <NotFoundPage />
         </Route>
       </Switch>
     </BrowserRouter>
   );
+};
+
+App.propTypes = {
+  films: PropTypes.array.isRequired
 };
 
 export default App;
