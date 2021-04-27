@@ -8,9 +8,9 @@ const PlayerPage = (props) => {
     <>
       <div className="player">
         <video
-          src={film.video_link}
+          src={film.videoLink}
           className="player__video"
-          poster={film.poster_image}
+          poster={film.posterImage}
         ></video>
 
         <button type="button" className="player__exit">
@@ -61,8 +61,8 @@ const PlayerPage = (props) => {
 
 PlayerPage.propTypes = {
   film: PropTypes.shape({
-    video_link: PropTypes.string.isRequired,
-    poster_image: PropTypes.string.isRequired,
+    videoLink: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })
 };

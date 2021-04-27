@@ -17,7 +17,7 @@ const FilmPage = (props) => {
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img
-              src={film.background_image}
+              src={film.backgroundImage}
               alt={film.alt}
             />
           </div>
@@ -84,7 +84,7 @@ const FilmPage = (props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img
-                src={film.poster_image}
+                src={film.posterImage}
                 alt={film.name}
                 width="218"
                 height="327"
@@ -232,12 +232,12 @@ const FilmPage = (props) => {
 
 FilmPage.propTypes = {
   film: PropTypes.shape({
-    background_image: PropTypes.string.isRequired,
+    backgroundImage: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
-    poster_image: PropTypes.string.isRequired,
+    posterImage: PropTypes.string.isRequired,
     rating: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,

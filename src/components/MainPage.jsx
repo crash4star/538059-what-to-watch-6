@@ -5,7 +5,7 @@ import MoviesList from './MoviesList';
 
 const MainPage = (props) => {
   const {name = `Movie no found`} = props;
-  const {poster_image = `https://baclocal8se.org/sites/default/files/page/featured/650-413.png`} = props;
+  const {posterImage = `https://baclocal8se.org/sites/default/files/page/featured/650-413.png`} = props;
   const {alt = `Movie no found`} = props;
   const {genre = `Movie no found`} = props;
   const {year = 1234} = props;
@@ -47,7 +47,7 @@ const MainPage = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={poster_image} alt={alt} width="218" height="327" />
+              <img src={posterImage} alt={alt} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -168,7 +168,7 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   name: PropTypes.string.isRequired,
-  poster_image: PropTypes.string.isRequired,
+  posterImage: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,

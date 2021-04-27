@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {useHistory} from 'react-router-dom';
 
 const MovieCard = (props) => {
-  const {preview_image = `none`} = props.data;
+  const {previewImage = `none`} = props.data;
   const {alt = `none`} = props.data;
   const {name = `none`} = props.data;
   const {id = ``} = props.data;
@@ -22,7 +22,7 @@ const MovieCard = (props) => {
         setActiveCard(id);
       }}>
         <div className="small-movie-card__image">
-          <img src={preview_image} alt={alt} width={280} height={175} />
+          <img src={previewImage} alt={alt} width={280} height={175} />
         </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link" href="movie-page.html" onClick={handleGoToFilmPage}>
@@ -36,7 +36,7 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   data: PropTypes.shape({
-    preview_image: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,

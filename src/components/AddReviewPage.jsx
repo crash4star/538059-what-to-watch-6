@@ -12,7 +12,7 @@ const AddReviewPage = (props) => {
         <div className="movie-card__header">
           <div className="movie-card__bg">
             <img
-              src={film.background_image}
+              src={film.backgroundImage}
               alt={film.alt}
             />
           </div>
@@ -55,7 +55,7 @@ const AddReviewPage = (props) => {
 
           <div className="movie-card__poster movie-card__poster--small">
             <img
-              src={film.poster_image}
+              src={film.posterImage}
               alt={film.alt}
               width="218"
               height="327"
@@ -71,10 +71,10 @@ const AddReviewPage = (props) => {
 
 AddReviewPage.propTypes = {
   film: PropTypes.shape({
-    background_image: PropTypes.string.isRequired,
+    backgroundImage: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    poster_image: PropTypes.string.isRequired
+    posterImage: PropTypes.string.isRequired
   })
 };
 
