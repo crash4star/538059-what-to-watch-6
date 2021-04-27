@@ -17,7 +17,7 @@ const App = (props) => {
         <Route path="/" exact>
           <MainPage
             name={`The Grand Budapest Hotel`}
-            poster_image={`img/the-grand-budapest-hotel-poster.jpg`}
+            posterImage={`img/the-grand-budapest-hotel-poster.jpg`}
             alt={`The Grand Budapest Hotel`}
             genre={`Drama`}
             year={2014}

@@ -1,14 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import {useHistory} from 'react-router-dom';
 
-const MovieCard = (props) => {
-  const {previewImage = `none`} = props.data;
-  const {alt = `none`} = props.data;
-  const {name = `none`} = props.data;
-  const {id = ``} = props.data;
+import Player from './Player';
 
-  const [, setActiveCard] = useState(id);
+const MovieCard = (props) => {
+  const {name = `Not found`} = props.data;
+  const {previewVideoLink} = props.data;
+  const {previewImage} = props.data;
+
+  const [moviePoster, setMoviePoster] = useState(previewImage);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [hoverStatus, setHoverOnCard] = useState(false);
   const history = useHistory();
 
   const handleGoToFilmPage = (e) => {
@@ -16,13 +19,38 @@ const MovieCard = (props) => {
     history.push(`/films/${name}`);
   };
 
+  const handleMouseOnCard = () => {
+    setHoverOnCard(true);
+  };
+
+  const handleMouseLeaveCard = () => {
+    setMoviePoster(previewImage);
+    setIsPlaying(false);
+    setHoverOnCard(false);
+  };
+
+  const handleOnTimeOut = () => {
+    setMoviePoster(``);
+    setIsPlaying(true);
+  };
+
+  useEffect(() => {
+    const timer = hoverStatus && setTimeout(handleOnTimeOut, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [hoverStatus]);
+
   return (
     <>
-      <article className="small-movie-card catalog__movies-card" onMouseEnter={() => {
-        setActiveCard(id);
-      }}>
+      <article className="small-movie-card catalog__movies-card" onMouseEnter={handleMouseOnCard} onMouseLeave={handleMouseLeaveCard}>
         <div className="small-movie-card__image">
-          <img src={previewImage} alt={alt} width={280} height={175} />
+          <Player
+            preview={previewVideoLink}
+            poster={moviePoster}
+            isPlaying={isPlaying}
+            data={props.data} />
         </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link" href="movie-page.html" onClick={handleGoToFilmPage}>
