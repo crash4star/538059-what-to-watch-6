@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 import TabOverview from './TabOverview';
 import TabDetails from './TabDetails';
+import TabReviews from './TabReviews';
 
 const Tabs = (props) => {
-    const film = props.props;
-    const TABS = ['Overview', 'Details', 'Reviews'];
+    const film = props.film;
+    const reviews = props.reviews;
+    const TABS = [`Overview`, `Details`, `Reviews`];
 
     const [tabStatus, setTabStatus] = useState(TABS[0]);
 
@@ -32,7 +34,9 @@ const Tabs = (props) => {
                         ))}
                     </ul>
                 </nav>
-                <TabDetails film={film}/>
+                {tabStatus === 'Overview' ? <TabOverview film={film} /> : false}
+                {tabStatus === 'Details' ? <TabDetails film={film} /> : false}
+                {tabStatus === 'Reviews' ? <TabReviews film={film} reviews={reviews} /> : false}
             </div>
         </>
     );

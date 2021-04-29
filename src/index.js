@@ -4,9 +4,10 @@ import ReactDOM from "react-dom";
 import App from './components/App';
 
 import films from "./mocks/films";
+import reviews from './mocks/reviews';
 
 ReactDOM.render(
     <App
-      films={films} />,
+      films={films} reviews={reviews}/>,
     document.querySelector(`#root`)
 );

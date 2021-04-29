@@ -31,7 +31,7 @@ const App = (props) => {
           <MyListPage films={props.films} />
         </Route>
         <Route path="/films/:id" exact>
-          <FilmPage film={props.films[4]}/>
+          <FilmPage film={props.films[4]} reviews={props.reviews} films={props.films}/>
         </Route>
         <Route path="/films/:id/review" exact>
           <AddReviewPage film={props.films[4]}/>

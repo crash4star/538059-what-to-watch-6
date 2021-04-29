@@ -1,16 +1,33 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import TabsList from './TabsList';
+import MoviesList from './MoviesList';
 
 const FilmPage = (props) => {
-  const {film} = props;
+  const { film } = props;
+  const { films } = props;
+  const { reviews } = props;
   const history = useHistory();
 
   const handleAddReview = (e) => {
     e.preventDefault();
     history.push(`/films/${film.name}/review`);
+  };
+
+  const genreFilter = (arr, genre) => {
+    const genresArr = arr.map(movie => movie.genre.split('/'));
+    const currentGenresArr = genre.split('/').map(item => item.toLowerCase());
+
+    return genresArr.map((have, i) => (
+      have.filter(match => currentGenresArr.indexOf(match.toLowerCase()) !== -1)
+    ))
+      .map((movie, i) => {
+        return movie.length !== 0 ? arr[i] : false;
+      })
+      .filter(same => same.id !== film.id)
+      .filter(result => result);
   };
 
   return (
@@ -93,7 +110,7 @@ const FilmPage = (props) => {
               />
             </div>
 
-            <TabsList props={film}/>
+            <TabsList film={film} reviews={reviews} />
           </div>
         </div>
       </section>
@@ -102,71 +119,7 @@ const FilmPage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Fantastic Beasts: The Crimes of Grindelwald
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/bohemian-rhapsody.jpg"
-                  alt="Bohemian Rhapsody"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Bohemian Rhapsody
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/macbeth.jpg"
-                  alt="Macbeth"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Macbeth
-                </a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img
-                  src="img/aviator.jpg"
-                  alt="Aviator"
-                  width="280"
-                  height="175"
-                />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">
-                  Aviator
-                </a>
-              </h3>
-            </article>
-          </div>
+          <MoviesList films={genreFilter(films, film.genre).slice(0, 4)} />
         </section>
 
         <footer className="page-footer">
