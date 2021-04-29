@@ -68,6 +68,7 @@ MovieCard.propTypes = {
     alt: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired
   }),
 };
 

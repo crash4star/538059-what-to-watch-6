@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import TabsList from './TabsList';
 import MoviesList from './MoviesList';
 
 const FilmPage = (props) => {
-  const { film } = props;
-  const { films } = props;
-  const { reviews } = props;
+  const {film} = props;
+  const {films} = props;
+  const {reviews} = props;
   const history = useHistory();
 
   const handleAddReview = (e) => {
@@ -17,17 +17,17 @@ const FilmPage = (props) => {
   };
 
   const genreFilter = (arr, genre) => {
-    const genresArr = arr.map(movie => movie.genre.split('/'));
-    const currentGenresArr = genre.split('/').map(item => item.toLowerCase());
+    const genresArr = arr.map((movie) => movie.genre.split(`/`));
+    const currentGenresArr = genre.split(`/`).map((item) => item.toLowerCase());
 
-    return genresArr.map((have, i) => (
-      have.filter(match => currentGenresArr.indexOf(match.toLowerCase()) !== -1)
+    return genresArr.map((have) => (
+      have.filter((match) => currentGenresArr.indexOf(match.toLowerCase()) !== -1)
     ))
-      .map((movie, i) => {
-        return movie.length !== 0 ? arr[i] : false;
-      })
-      .filter(same => same.id !== film.id)
-      .filter(result => result);
+    .map((movie, i) => {
+      return movie.length !== 0 ? arr[i] : false;
+    })
+    .filter((same) => same.id !== film.id)
+    .filter((result) => result);
   };
 
   return (
@@ -151,8 +151,11 @@ FilmPage.propTypes = {
     rating: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.array.isRequired
-  })
+    starring: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired
+  }),
+  films: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired
 };
 
 export default FilmPage;

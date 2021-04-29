@@ -48,7 +48,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired
 };
 
 export default App;

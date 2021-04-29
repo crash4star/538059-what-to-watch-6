@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TabDetails = (props) => {
   const {film} = props;
@@ -19,7 +20,7 @@ const TabDetails = (props) => {
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <span className="movie-card__details-value">
-              {starring.map((actor, i) => actor)}
+              {starring.map((actor) => actor)}
             </span>
           </p>
         </div>
@@ -41,6 +42,16 @@ const TabDetails = (props) => {
       </div>
     </>
   );
+};
+
+TabDetails.propTypes = {
+  film: PropTypes.shape({
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.array.isRequired,
+    runTime: PropTypes.number.isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired
+  })
 };
 
 export default TabDetails;

@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import PropTypes from 'prop-types';
 
 const Player = (props) => {
   const poster = props.poster;
@@ -22,6 +23,12 @@ const Player = (props) => {
       </video>
     </>
   );
+};
+
+Player.propTypes = {
+  poster: PropTypes.string.isRequired,
+  preview: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default Player;
