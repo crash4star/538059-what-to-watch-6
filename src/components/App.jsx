@@ -1,6 +1,7 @@
 import React from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import MainPage from "./MainPage";
 import SignInPage from "./SignInPage";
@@ -11,6 +12,8 @@ import PlayerPage from "./PlayerPage";
 import NotFoundPage from "./NotFoundPage";
 
 const App = (props) => {
+  const { films, reviews } = props;
+
   return (
     <BrowserRouter>
       <Switch>
@@ -21,23 +24,23 @@ const App = (props) => {
             alt={`The Grand Budapest Hotel`}
             genre={`Drama`}
             year={2014}
-            films={props.films}
+            films={films}
           />
         </Route>
         <Route path="/login" exact>
           <SignInPage />
         </Route>
         <Route path="/mylist" exact>
-          <MyListPage films={props.films} />
+          <MyListPage films={films} />
         </Route>
         <Route path="/films/:id" exact>
-          <FilmPage film={props.films[4]} reviews={props.reviews} films={props.films}/>
+          <FilmPage film={films[4]} reviews={reviews} films={films} />
         </Route>
         <Route path="/films/:id/review" exact>
-          <AddReviewPage film={props.films[4]}/>
+          <AddReviewPage film={films[4]} />
         </Route>
         <Route path="/player/:id" exact>
-          <PlayerPage film={props.films[4]}/>
+          <PlayerPage film={films[4]} />
         </Route>
         <Route>
           <NotFoundPage />
@@ -52,4 +55,10 @@ App.propTypes = {
   reviews: PropTypes.array.isRequired
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  films: state.films,
+  reviews: state.reviews,
+});
+
+export { App }
+export default connect(mapStateToProps, null)(App);

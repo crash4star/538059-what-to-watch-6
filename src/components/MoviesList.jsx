@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 
 import MovieCard from "./MovieCard";
 
 const MoviesList = (props) => {
-  const films = props.films;
+  const {films} = props;
 
   return (
     <>
@@ -17,8 +17,9 @@ const MoviesList = (props) => {
   );
 };
 
-MoviesList.propTypes = {
-  films: PropTypes.array.isRequired
-};
+const mapStateToProps = (state) => ({
+  films: state.filmsByGenre
+});
 
-export default MoviesList;
+export { MoviesList };
+export default connect(mapStateToProps, )(MoviesList);
