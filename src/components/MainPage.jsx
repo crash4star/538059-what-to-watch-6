@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import MoviesList from './MoviesList';
 import GenreList from './GenreList';
+import ShowMoreBtn from './ShowMoreBtn';
 
 const MainPage = (props) => {
   const { name = `Movie no found` } = props;
@@ -91,11 +92,7 @@ const MainPage = (props) => {
 
           <MoviesList />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <ShowMoreBtn />
         </section>
 
         <footer className="page-footer">

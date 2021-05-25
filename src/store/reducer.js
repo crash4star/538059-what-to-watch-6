@@ -5,6 +5,7 @@ import { ActionType } from './action';
 const initialState = {
     currentGenre: 'All genres',
     filmsByGenre: films,
+    visibleFilms: films.slice(0,8),
     films: films,
     reviews: reviews,
     genres: [
@@ -33,6 +34,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 filmsByGenre: action.payload,
+                visibleFilms: action.payload.slice(0,8),
+            };
+
+        case ActionType.SHOW_NEW_EIGHT_FILMS:
+            return {
+                ...state,
+                visibleFilms: state.visibleFilms.concat(action.payload),
             };
     }
 
