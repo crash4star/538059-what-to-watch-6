@@ -71,10 +71,9 @@ const AddReviewPage = (props) => {
 
 AddReviewPage.propTypes = {
   film: PropTypes.shape({
-    backgroundImage: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
+    background_image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    posterImage: PropTypes.string.isRequired
+    poster_image: PropTypes.string.isRequired
   })
 };
 

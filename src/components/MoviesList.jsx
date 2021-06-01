@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import MovieCard from "./MovieCard";
 
 const MoviesList = (props) => {
-  const {visibleFilms} = props;
+  const {films} = props;
   
   return (
     <>
       <div className="catalog__movies-list">
-        {visibleFilms.map((item, i) => {
+        {films.map((item, i) => {
           return <MovieCard data={item} key={item.id} />
         })}
       </div>
@@ -18,7 +18,7 @@ const MoviesList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  visibleFilms: state.visibleFilms
+  films: state.films
 });
 
 export { MoviesList };

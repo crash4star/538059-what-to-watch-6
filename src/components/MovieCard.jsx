@@ -6,10 +6,10 @@ import Player from './Player';
 
 const MovieCard = (props) => {
   const {name = `Not found`} = props.data;
-  const {previewVideoLink} = props.data;
-  const {previewImage} = props.data;
+  const {preview_video_link} = props.data;
+  const {preview_image} = props.data;
 
-  const [moviePoster, setMoviePoster] = useState(previewImage);
+  const [moviePoster, setMoviePoster] = useState(preview_image);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hoverStatus, setHoverOnCard] = useState(false);
   const history = useHistory();
@@ -24,7 +24,7 @@ const MovieCard = (props) => {
   };
 
   const handleMouseLeaveCard = () => {
-    setMoviePoster(previewImage);
+    setMoviePoster(preview_image);
     setIsPlaying(false);
     setHoverOnCard(false);
   };
@@ -47,7 +47,7 @@ const MovieCard = (props) => {
       <article className="small-movie-card catalog__movies-card" onMouseEnter={handleMouseOnCard} onMouseLeave={handleMouseLeaveCard}>
         <div className="small-movie-card__image">
           <Player
-            preview={previewVideoLink}
+            preview={preview_video_link}
             poster={moviePoster}
             isPlaying={isPlaying}
             data={props.data} />
@@ -64,11 +64,10 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   data: PropTypes.shape({
-    previewImage: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
+    preview_image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    previewVideoLink: PropTypes.string.isRequired
+    id: PropTypes.number.isRequired,
+    preview_video_link: PropTypes.string.isRequired
   }),
 };
 

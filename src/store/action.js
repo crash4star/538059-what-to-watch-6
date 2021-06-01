@@ -1,10 +1,17 @@
 export const ActionType = {
+    GET_FILMS: `get_films`,
     CHANGE_GENRE: `change_genre`,
     GET_SAME_FILMS_BY_GENRE: `same_films_by_genre`,
     SHOW_NEW_EIGHT_FILMS: 'show_new_eight_film_cards'
 };
 
 export const ActionCreator = {
+    getFilms: (films) => {
+        return {
+            type: ActionType.GET_FILMS,
+            payload: films
+        };
+    },
     changeGenre: (genre) => {
         return {
             type: ActionType.CHANGE_GENRE,

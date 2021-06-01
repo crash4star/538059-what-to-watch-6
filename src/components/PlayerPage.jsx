@@ -61,8 +61,8 @@ const PlayerPage = (props) => {
 
 PlayerPage.propTypes = {
   film: PropTypes.shape({
-    videoLink: PropTypes.string.isRequired,
-    posterImage: PropTypes.string.isRequired,
+    video_link: PropTypes.string.isRequired,
+    poster_image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired
   })
 };

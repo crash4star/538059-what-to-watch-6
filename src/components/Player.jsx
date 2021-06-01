@@ -25,10 +25,10 @@ const Player = (props) => {
   );
 };
 
-Player.propTypes = {
-  poster: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
-  isPlaying: PropTypes.bool.isRequired
-};
+// Player.propTypes = {
+//   preview_image: PropTypes.string.isRequired,
+//   preview: PropTypes.string.isRequired,
+//   isPlaying: PropTypes.bool.isRequired
+// };
 
 export default Player;

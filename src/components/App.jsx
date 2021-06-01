@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,10 +10,17 @@ import FilmPage from "./FilmPage";
 import AddReviewPage from "./AddReviewPage";
 import PlayerPage from "./PlayerPage";
 import NotFoundPage from "./NotFoundPage";
+import {fetchFilmsList} from '../api/api-actions';
 
 const App = (props) => {
-  const { films, reviews } = props;
-
+  const { films, reviews, isDataLoaded, onLoadData } = props;
+  
+  useEffect(() => {
+    if (!isDataLoaded) {
+      onLoadData();
+    }
+  }, [isDataLoaded]);
+  
   return (
     <BrowserRouter>
       <Switch>
@@ -52,13 +59,20 @@ const App = (props) => {
 
 App.propTypes = {
   films: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired
+  reviews: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   films: state.films,
   reviews: state.reviews,
+  isDataLoaded: state.isDataLoaded
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchFilmsList())
+  }
 });
 
 export { App }
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

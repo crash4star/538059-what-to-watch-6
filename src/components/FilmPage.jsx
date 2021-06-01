@@ -142,17 +142,16 @@ const FilmPage = (props) => {
 
 FilmPage.propTypes = {
   film: PropTypes.shape({
-    backgroundImage: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
+    background_image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired,
-    posterImage: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
+    released: PropTypes.number.isRequired,
+    poster_image: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired
+    id: PropTypes.number.isRequired
   }),
   films: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired

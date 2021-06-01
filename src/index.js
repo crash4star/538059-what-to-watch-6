@@ -1,23 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 import App from './components/App';
-
-import films from "./mocks/films";
-import reviews from './mocks/reviews';
 import { reducer } from './store/reducer';
+import { createApi } from './api/api';
+import { ActionCreator } from './store/action';
+import { films } from './mocks/films';
+
+const api = createApi(
+  () => store.dispatch(ActionCreator.getFilms(films))
+);
 
 const store = createStore(
   reducer,
-  composeWithDevTools()
+  composeWithDevTools(
+    applyMiddleware(thunk.withExtraArgument(api))
+  )
 );
-
-// store.subscribe(() => {
-//   console.log(store.getState());
-// });
 
 ReactDOM.render(
   <Provider store={store}>

@@ -4,9 +4,9 @@ import { ActionType } from './action';
 
 const initialState = {
     currentGenre: 'All genres',
-    filmsByGenre: films,
-    visibleFilms: films.slice(0,8),
-    films: films,
+    films: [],
+    filmsByGenre: [],
+    visibleFilms: [],
     reviews: reviews,
     genres: [
         'All genres',
@@ -19,11 +19,18 @@ const initialState = {
         'Romance',
         'Sci-fi',
         'Thrillers'
-    ]
+    ],
+    isDataLoaded: false
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case ActionType.GET_FILMS:
+            return {
+                ...state,
+                films: action.payload,
+                isDataLoaded: true
+            };
         case ActionType.CHANGE_GENRE:
             return {
                 ...state,
@@ -34,7 +41,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 filmsByGenre: action.payload,
-                visibleFilms: action.payload.slice(0,8),
+                visibleFilms: action.payload.slice(0, 8),
             };
 
         case ActionType.SHOW_NEW_EIGHT_FILMS:
