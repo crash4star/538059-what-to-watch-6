@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signIn } from '../api/api-actions';
 
-const SignInPage = () => {
+const SignInPage = ({ onSubmit }) => {
+  const loginRef = useRef();
+  const passwordRef = useRef();
+
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    onSubmit({
+      login: loginRef.current.value,
+      password: passwordRef.current.value
+    });
+  };
+
   return (
     <>
       <div className="user-page">
@@ -17,10 +34,11 @@ const SignInPage = () => {
         </header>
 
         <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form">
+          <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
+                  ref={loginRef}
                   className="sign-in__input"
                   type="email"
                   placeholder="Email address"
@@ -36,6 +54,7 @@ const SignInPage = () => {
               </div>
               <div className="sign-in__field">
                 <input
+                  ref={passwordRef}
                   className="sign-in__input"
                   type="password"
                   placeholder="Password"
@@ -51,7 +70,7 @@ const SignInPage = () => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">
+              <button className="sign-in__btn" type="submit" onClick={() => history.push(`/`)}>
                 Sign in
               </button>
             </div>
@@ -76,4 +95,12 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(authData) {
+    dispatch(signIn(authData));
+  }
+});
+
+
+export { SignInPage };
+export default connect(null, mapDispatchToProps)(SignInPage);

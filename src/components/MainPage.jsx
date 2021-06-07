@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import MoviesList from './MoviesList';
 import GenreList from './GenreList';
 import ShowMoreBtn from './ShowMoreBtn';
+import Spinner from './Spinner';
 
 const MainPage = (props) => {
   const { name = `Movie no found` } = props;
@@ -15,6 +16,7 @@ const MainPage = (props) => {
 
   return (
     <>
+      <Spinner />
       <section className="movie-card">
         <div className="movie-card__bg">
           <img

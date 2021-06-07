@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -10,17 +10,17 @@ import FilmPage from "./FilmPage";
 import AddReviewPage from "./AddReviewPage";
 import PlayerPage from "./PlayerPage";
 import NotFoundPage from "./NotFoundPage";
-import {fetchFilmsList} from '../api/api-actions';
+import { fetchFilmsList } from '../api/api-actions';
 
 const App = (props) => {
   const { films, reviews, isDataLoaded, onLoadData } = props;
-  
+
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (isDataLoaded) {
       onLoadData();
     }
   }, [isDataLoaded]);
-  
+
   return (
     <BrowserRouter>
       <Switch>

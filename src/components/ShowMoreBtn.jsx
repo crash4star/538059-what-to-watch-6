@@ -11,7 +11,7 @@ const ShowMoreBtn = (props) => {
 
     return (
         <>
-            <div className={`${filmsByGenre.length === visibleFilms.length ? 'visually-hidden' : 'catalog__more'}`}>
+            <div className={`${visibleFilms.length === filmsByGenre.length ? 'visually-hidden' : 'catalog__more'}`}>
                 <button className={`${filmsByGenre.length > 8 ? 'catalog__button' : 'visually-hidden'}`} type="button" onClick={showMoreFilms}>
                     Show more
                 </button>

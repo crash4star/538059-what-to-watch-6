@@ -1,5 +1,3 @@
-import films from '../mocks/films';
-import reviews from '../mocks/reviews';
 import { ActionType } from './action';
 
 const initialState = {
@@ -7,7 +5,7 @@ const initialState = {
     films: [],
     filmsByGenre: [],
     visibleFilms: [],
-    reviews: reviews,
+    reviews: [],
     genres: [
         'All genres',
         'Comedies',
@@ -20,7 +18,8 @@ const initialState = {
         'Sci-fi',
         'Thrillers'
     ],
-    isDataLoaded: false
+    isDataLoaded: true,
+    authorizationStatus: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,10 +43,27 @@ const reducer = (state = initialState, action) => {
                 visibleFilms: action.payload.slice(0, 8),
             };
 
+        case ActionType.FIRST_EIGHT_FILMS:
+            return {
+                ...state,
+                visibleFilms: action.payload,
+            };
+
         case ActionType.SHOW_NEW_EIGHT_FILMS:
             return {
                 ...state,
                 visibleFilms: state.visibleFilms.concat(action.payload),
+            };
+
+        case ActionType.IS_DATA_LOADED:
+            return {
+                ...state,
+                isDataLoaded: action.payload,
+            };
+        case ActionType.REQUIRED_AUTHORIZATION:
+            return {
+                ...state,
+                authorizationStatus: action.payload,
             };
     }
 

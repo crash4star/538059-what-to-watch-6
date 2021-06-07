@@ -9,10 +9,10 @@ import App from './components/App';
 import { reducer } from './store/reducer';
 import { createApi } from './api/api';
 import { ActionCreator } from './store/action';
-import { films } from './mocks/films';
+import { checkAuth } from './api/api-actions';
 
 const api = createApi(
-  () => store.dispatch(ActionCreator.getFilms(films))
+  () => store.dispatch(ActionCreator.requiredAuthorization(false))
 );
 
 const store = createStore(
@@ -21,6 +21,8 @@ const store = createStore(
     applyMiddleware(thunk.withExtraArgument(api))
   )
 );
+
+store.dispatch(checkAuth());
 
 ReactDOM.render(
   <Provider store={store}>
