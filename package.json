@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "history": "^4.10.1",
     "redux-thunk": "^2.3.0"
   }
 }

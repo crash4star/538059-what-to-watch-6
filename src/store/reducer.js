@@ -19,7 +19,8 @@ const initialState = {
         'Thrillers'
     ],
     isDataLoaded: true,
-    authorizationStatus: false
+    authorizationStatus: false,
+    userMail: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -64,6 +65,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 authorizationStatus: action.payload,
+            };
+        case ActionType.ADD_USER_MAIL:
+            return {
+                ...state,
+                userMail: action.payload,
             };
     }
 

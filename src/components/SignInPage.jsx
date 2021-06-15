@@ -16,6 +16,8 @@ const SignInPage = ({ onSubmit }) => {
       login: loginRef.current.value,
       password: passwordRef.current.value
     });
+    history.push(`/`);
+    console.log(history);
   };
 
   return (
@@ -70,7 +72,7 @@ const SignInPage = ({ onSubmit }) => {
               </div>
             </div>
             <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit" onClick={() => history.push(`/`)}>
+              <button className="sign-in__btn">
                 Sign in
               </button>
             </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from 'react-redux';
 
 import MoviesList from './MoviesList';
 import GenreList from './GenreList';
@@ -45,6 +46,7 @@ const MainPage = (props) => {
                 height="63"
               />
             </div>
+            <div className='user-block__email'>{props.userMail ? props.userMail : <a href='/login'>Log in</a>}</div>
           </div>
         </header>
 
@@ -124,4 +126,9 @@ MainPage.propTypes = {
   films: PropTypes.array.isRequired
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  userMail: state.userMail
+});
+
+export { MainPage };
+export default connect(mapStateToProps, )(MainPage);

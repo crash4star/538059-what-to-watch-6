@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router as BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -10,7 +10,9 @@ import FilmPage from "./FilmPage";
 import AddReviewPage from "./AddReviewPage";
 import PlayerPage from "./PlayerPage";
 import NotFoundPage from "./NotFoundPage";
+import PrivateRoute from "./PrivateRoute";
 import { fetchFilmsList } from '../api/api-actions';
+import browserHistory from "../history/browser-history";
 
 const App = (props) => {
   const { films, reviews, isDataLoaded, onLoadData } = props;
@@ -22,9 +24,12 @@ const App = (props) => {
   }, [isDataLoaded]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route path="/" exact>
+        <Route path='/login' exact>
+          <SignInPage />
+        </Route>
+        <Route exact path='/'>
           <MainPage
             name={`The Grand Budapest Hotel`}
             posterImage={`img/the-grand-budapest-hotel-poster.jpg`}
@@ -32,23 +37,28 @@ const App = (props) => {
             genre={`Drama`}
             year={2014}
             films={films}
-          />
+          />}
         </Route>
-        <Route path="/login" exact>
-          <SignInPage />
-        </Route>
-        <Route path="/mylist" exact>
-          <MyListPage films={films} />
-        </Route>
-        <Route path="/films/:id" exact>
-          <FilmPage film={films[4]} reviews={reviews} films={films} />
-        </Route>
-        <Route path="/films/:id/review" exact>
-          <AddReviewPage film={films[4]} />
-        </Route>
-        <Route path="/player/:id" exact>
-          <PlayerPage film={films[4]} />
-        </Route>
+        <PrivateRoute exact
+          path='/mylist'
+          render={() => <MyListPage films={films} />}
+        >
+        </PrivateRoute>
+        <PrivateRoute exact
+          path="/films/:id"
+          render={() => <FilmPage film={films[4]} reviews={reviews} films={films} />}
+        >
+        </PrivateRoute>
+        <PrivateRoute exact
+          path="/films/:id/review"
+          render={() => <AddReviewPage film={films[4]} />}
+        >
+        </PrivateRoute>
+        <PrivateRoute exact
+          path="/player/:id"
+          render={() => <PlayerPage film={films[4]} />}
+        >
+        </PrivateRoute>
         <Route>
           <NotFoundPage />
         </Route>

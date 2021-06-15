@@ -5,7 +5,8 @@ export const ActionType = {
     SHOW_NEW_EIGHT_FILMS: 'show_new_eight_film_cards',
     FIRST_EIGHT_FILMS: 'add_first_eight_films',
     IS_DATA_LOADED: 'load_data',
-    REQUIRED_AUTHORIZATION: 'login'
+    REQUIRED_AUTHORIZATION: 'login',
+    ADD_USER_MAIL: 'add_user_mail'
 };
 
 export const ActionCreator = {
@@ -63,6 +64,12 @@ export const ActionCreator = {
         return {
             type: ActionType.REQUIRED_AUTHORIZATION,
             payload: status
+        };
+    },
+    addUserMail: (mail) => {
+        return {
+            type: ActionType.ADD_USER_MAIL,
+            payload: mail
         };
     }
 };
